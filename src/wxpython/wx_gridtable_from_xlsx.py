@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 """
-グリッドテーブルを描画する
+xlsxデータをグリッドテーブルに表示
 """
 
 import wx
 import wx.grid
-from typing import Literal
+import openpyxl
 
 from utils import read_json
 
@@ -30,11 +30,12 @@ class MainFrame(wx.Frame):
         self.panel.SetSizer(self.sizer)
 
         self.grid = wx.grid.Grid(self.panel)
-        self.grid_font = self.font_settings(16)
+        self.grid_font = self.font_settings(14)
         self.grid.SetDefaultCellFont(self.grid_font)
-        self.grid.SetDefaultCellAlignment(wx.ALIGN_CENTER_HORIZONTAL, wx.ALIGN_CENTER_VERTICAL)
+        self.grid.SetDefaultCellAlignment(wx.ALIGN_CENTER, wx.ALIGN_CENTER)
         self.grid.SetDefaultRowSize(30)
         self.grid.DisableDragRowSize()
+        self.grid.SetLabelFont(self.grid_font)
 
         self.draw_table()
 
@@ -77,13 +78,9 @@ class MainFrame(wx.Frame):
     def font_settings(self, size=12) -> wx.Font:
         """フォント設定を返す"""
         font_name = "MS Gothic" if wx.Platform == "__WXMSW__" else "Osaka"
-        font = wx.Font(
+        return wx.Font(
             size, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, faceName=font_name
         )
-
-        # font_info = wx.FontInfo(size).Family(wx.FONTFAMILY_DEFAULT).FaceName("Osaka")
-        # font = wx.Font.FromInfo(font_info)
-        return font
 
 
 if __name__ == "__main__":
@@ -92,7 +89,7 @@ if __name__ == "__main__":
     header, data, width = json_data["header"], json_data["data"], json_data["width"]
 
     app = wx.App()
-    frame = MainFrame(None, "スプレッドシートを表示")
+    frame = MainFrame(None, "グリッドテーブルを表示")
     frame.update_table(header=header, data=data, width=width)
     frame.Show()
     app.MainLoop()
