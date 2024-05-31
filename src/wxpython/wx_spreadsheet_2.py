@@ -17,6 +17,7 @@ class MainFrame(wx.Frame):
         # self.set_window_config()
         self.__create_widget()
         self.__do_layout()
+        self.filepath = Path("")
 
     def __create_widget(self):
         self.panel = wx.Panel(self)
@@ -33,7 +34,8 @@ class MainFrame(wx.Frame):
         ) as file_dialog:
             if file_dialog.ShowModal() == wx.ID_CANCEL:
                 return
-            self.read_sheets(file_dialog.GetPath())
+            self.filepath = Path(file_dialog.GetPath())
+            self.read_sheets(self.filepath)
             self.display_spreadsheet()
 
     def __do_layout(self):
@@ -49,13 +51,14 @@ class MainFrame(wx.Frame):
         self.sheets = [sheet for sheet in self.workbook.worksheets]
 
     def display_spreadsheet(self, position=(0, 0)) -> None:
-        self.sheet = self.workbook.worksheets[0]
+        # self.sheet = self.workbook.worksheets[0]
+        self.sheet = self.workbook.active
 
-        if self.sheet is None:
-            raise ValueError("No active sheet found in the workbook")
+        if self.sheet is not type(Worksheet):
+            raise ValueError(f"{self.filepath.name}: シートが無効です。")
 
         self.grid = wx.grid.Grid(self.panel)
-
+        
         self.grid.CreateGrid(self.sheet.max_row, self.sheet.max_column)
 
         for row in range(1, self.sheet.max_row + 1):
