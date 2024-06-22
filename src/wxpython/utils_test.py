@@ -3,7 +3,7 @@
 import os
 from pprint import pprint
 
-from utils import *
+from .utils import *
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ import wx
 import wx.grid
 import openpyxl
 
-from utils import read_json
+from .utils import read_json
 
 HeaderList = list[str]
 WidthList = list[int]

@@ -3,8 +3,8 @@
 from configparser import ConfigParser
 from pathlib import Path
 
-from utils import handle_exceptions
-from config_items import Position, Size, ConfigItem, CoordinateType
+from .utils import handle_exceptions
+from .config_items import Position, Size, ConfigItem, CoordinateType
 
 
 class ConfigManager(ConfigParser):

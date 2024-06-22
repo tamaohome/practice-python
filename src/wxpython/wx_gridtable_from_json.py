@@ -7,7 +7,7 @@ jsonデータをグリッドテーブルに表示
 import wx
 import wx.grid
 
-from utils import read_json
+from .utils import read_json
 
 HeaderList = list[str]
 WidthList = list[int]
