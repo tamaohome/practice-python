@@ -40,47 +40,37 @@ class AnimalFileReader1:
 
 
 class AnimalFileReader2:
-    """yield文を使って1行ずつ読み込む"""
-
-    def __init__(self, file_path):
-        self.file_path = file_path
-
-    def __iter__(self):
-        with open(self.file_path, "r") as file:
-            for line in file:
-                yield line.rstrip("\n")
-
-    def __next__(self):
-        raise StopIteration
-
-
-class AnimalFileReader3:
     """yield文を使って1行ずつ読み込む イテレーションの状態も保存する"""
 
-    def __init__(self, file_path):
-        self.file = open(file_path, "r")
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self.file = open(filepath, "r")
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        line = self.file.readline()
-        if not line:
-            self.file.close()  # ファイルの終わりに達したらファイルを閉じる
+        if self.file.closed:
             raise StopIteration
-        return line.rstrip("\n")
+        line = self.file.readline()
+        if line:
+            return line.rstrip("\n")
+        else:
+            self.file.close()
+            raise StopIteration
 
 
 if __name__ == "__main__":
 
     input_file = "sample_data/doubutsu.txt"
 
-    reader = AnimalReader()
-    reader1 = AnimalFileReader1(input_file)
-    reader2 = AnimalFileReader2(input_file)
-    reader3 = AnimalFileReader3(input_file)
+    readers = [
+        AnimalReader(),
+        AnimalFileReader1(input_file),
+        AnimalFileReader2(input_file)
+    ]  # fmt: skip
 
-    for reader in [reader, reader1, reader2, reader3]:
+    for reader in readers:
         print(reader.__class__.__name__ + ":")
 
         print("1回目のループ: ", end="")
@@ -91,7 +81,13 @@ if __name__ == "__main__":
                 break
 
         print("2回目のループ: ", end="")
-        for i, animal in enumerate(reader):
-            print(animal + " ", end="")
+        i = 0
+        while True:
+            try:
+                animal = next(reader)
+                print(f"{i}:{animal}" + " ", end="")
+            except StopIteration:
+                break
+            i += 1
 
         print("\n")
