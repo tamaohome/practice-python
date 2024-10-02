@@ -15,6 +15,7 @@ dependencies = [
     "ipywidgets>=8.1.2",
     "tkeasygui>=0.2.73",
     "flet>=0.23.2",
+    "pandas>=2.2.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

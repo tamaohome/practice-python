@@ -112,6 +112,7 @@ mdurl==0.1.2
 numpy==1.26.4
     # via contourpy
     # via matplotlib
+    # via pandas
     # via practice-python
 oauthlib==3.2.2
     # via flet-runtime
@@ -121,6 +122,8 @@ packaging==23.2
     # via flet
     # via matplotlib
     # via plotly
+pandas==2.2.2
+    # via practice-python
 parso==0.8.4
     # via jedi
 pillow==10.3.0
@@ -149,12 +152,15 @@ pypng==0.20220715.0
 python-dateutil==2.9.0.post0
     # via arrow
     # via matplotlib
+    # via pandas
 python-dotenv==1.0.1
     # via uvicorn
 python-multipart==0.0.9
     # via fastapi
 python-slugify==8.0.4
     # via cookiecutter
+pytz==2024.2
+    # via pandas
 pyyaml==6.0.1
     # via cookiecutter
     # via uvicorn
@@ -203,6 +209,8 @@ typing-extensions==4.12.2
     # via pydantic-core
     # via qrcode
     # via typer
+tzdata==2024.1
+    # via pandas
 urllib3==2.2.2
     # via requests
 uvicorn==0.30.1
