@@ -6,6 +6,8 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
+#   universal: false
 
 -e file:.
 anytree==2.12.1
@@ -29,6 +31,8 @@ executing==2.0.1
     # via stack-data
 fonttools==4.51.0
     # via matplotlib
+iniconfig==2.0.0
+    # via pytest
 ipython==8.24.0
     # via ipywidgets
 ipywidgets==8.1.2
@@ -55,6 +59,7 @@ packaging==24.0
     # via black
     # via matplotlib
     # via plotly
+    # via pytest
 parso==0.8.4
     # via jedi
 pathspec==0.12.1
@@ -68,6 +73,8 @@ platformdirs==4.2.1
     # via black
 plotly==5.21.0
     # via practice-python
+pluggy==1.5.0
+    # via pytest
 prompt-toolkit==3.0.43
     # via ipython
 ptyprocess==0.7.0
@@ -78,6 +85,7 @@ pygments==2.17.2
     # via ipython
 pyparsing==3.1.2
     # via matplotlib
+pytest==8.3.3
 python-dateutil==2.9.0.post0
     # via matplotlib
 six==1.16.0
