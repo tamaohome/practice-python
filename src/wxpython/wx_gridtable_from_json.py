@@ -7,7 +7,7 @@ jsonデータをグリッドテーブルに表示
 import wx
 import wx.grid
 
-from .utils import read_json
+from wxpython.utils import read_json
 
 HeaderList = list[str]
 WidthList = list[int]
@@ -39,7 +39,9 @@ class MainFrame(wx.Frame):
 
         self.draw_table()
 
-    def update_table(self, *, header: HeaderList, data: DataList, width: WidthList = []) -> None:
+    def update_table(
+        self, *, header: HeaderList, data: DataList, width: WidthList = []
+    ) -> None:
         """テーブルを更新する"""
         self.header = header
         self.data = data
@@ -85,13 +87,18 @@ class MainFrame(wx.Frame):
         """フォント設定を返す"""
         font_name = "MS Gothic" if wx.Platform == "__WXMSW__" else "Osaka"
         return wx.Font(
-            size, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, faceName=font_name
+            size,
+            wx.FONTFAMILY_DEFAULT,
+            wx.FONTSTYLE_NORMAL,
+            wx.FONTWEIGHT_NORMAL,
+            faceName=font_name,
         )
 
 
 if __name__ == "__main__":
     json_path = "sample_data/prefs.json"
     json_data = read_json(json_path)
+    assert isinstance(json_data, dict)
     header, data, width = json_data["header"], json_data["data"], json_data["width"]
 
     app = wx.App()

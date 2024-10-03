@@ -3,13 +3,17 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from . import Teacher
+    from . import Subject
 
 
 class Student:
     def __init__(self, name):
-        self.name = name
-        self.teacher: Teacher | None = None
+        self._name = name
+        self.subjects: list["Subject"] = []
 
-    def set_teacher(self, teacher: "Teacher"):
-        self.teacher = teacher
+    def add_subject(self, subject: "Subject"):
+        subject.add_student(self)
+
+    @property
+    def name(self) -> str:
+        return self._name

@@ -1,6 +1,6 @@
 class Reader:
     def __init__(self, file_path):
-        self.file = open(file_path, "r")
+        self.file = open(file_path, "r", encoding="utf-8")
 
     def __iter__(self):
         return self

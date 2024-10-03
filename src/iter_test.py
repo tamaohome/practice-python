@@ -22,7 +22,7 @@ class AnimalFileReader1:
 
     def __init__(self, file_path):
         self.animals = []
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             for line in file:
                 self.animals.append(line.rstrip("\n"))
         self.index = 0
@@ -44,7 +44,7 @@ class AnimalFileReader2:
 
     def __init__(self, filepath):
         self.filepath = filepath
-        self.file = open(filepath, "r")
+        self.file = open(filepath, "r", encoding="utf-8")
 
     def __iter__(self):
         return self
