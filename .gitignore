@@ -1,0 +1,11 @@
+.venv/
+.vscode/
+__pycache__/
+.pytest_cache/
+_old/
+*.py[cod]
+*$py.class
+*.ini
+*.log
+requirements-dev.lock
+requirements.lock
