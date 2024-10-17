@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 
+from pathlib import Path
 import xdwlib
 
 
 def main():
-    xdw_path = "sample.xdw"
+    xdw_path = Path("lib_xdwlib/blank.xdw")
+    assert xdw_path.exists()
 
     # 新しいDocuWorks文書を作成
     doc = xdwlib.Document(path=xdw_path)
 
-    obj = xdwlib.Page(doc=doc, pos=0)  # 例として新しいページを追加
+    print("doc.pages:", doc.pages)
+    print(type(doc.pages))
+
+    obj = xdwlib.Page(doc=doc, pos=doc.pages)
     doc.append(obj)
 
 
