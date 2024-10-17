@@ -7,7 +7,14 @@ jsonデータをグリッドテーブルに表示
 import wx
 import wx.grid
 
-from wxpython.utils import read_json
+import json
+
+
+def read_json(file_path: str) -> dict:
+    """JSONファイルを読み込む"""
+    with open(file_path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
 
 HeaderList = list[str]
 WidthList = list[int]
