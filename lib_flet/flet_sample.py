@@ -5,8 +5,8 @@ import flet as ft
 
 def main(page: ft.Page):
     # メイン画面のサイズを設定
-    page.window_width = 400
-    page.window_height = 200
+    page.window.width = 400
+    page.window.height = 200
 
     # Text Control 生成
     t = ft.Text(value="Fletの表示サンプル", color="blue", font_family="ＭＳ ゴシック")
